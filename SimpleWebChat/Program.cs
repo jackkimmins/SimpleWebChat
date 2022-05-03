@@ -17,8 +17,11 @@ class User
 
 class Program
 {
+    //Objects for both Jindium and jSock.
     private static JinServer jinServer = new JinServer("http://localhost:5000/");
     private static jSockServer server = new jSockServer("127.0.0.1", 8080);
+
+    //A a list to store chat users.
     private static List<User> users = new List<User>();
 
     static void Main()
@@ -26,6 +29,7 @@ class Program
         jinServer.ServerRoutes.AddContentRoute("/", "/index.html");
         jinServer.ServerRoutes.AddContentRoute("/", "/");
 
+        //Events for jSock communication.
         server.OnConnect += Server_OnConnect;
         server.OnDisconnect += Server_OnDisconnect;
         server.OnRecieve += Server_OnRecieve;
